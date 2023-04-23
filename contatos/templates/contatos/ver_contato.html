@@ -2,7 +2,17 @@
 
 {% block conteudo %}   
 
-        <h1 class="mt-5">{{ contato.nome }}</h1>
+        <h2 class="mt-3">{{ contato.nome }} {{ contato.sobrenome }}</h2>
+
+        {% comment %} #Inserir imagens {% endcomment %}
+
+        {% if contato.foto %}
+            <p>
+                <img src="{{ contato.foto.url }}" alt="" style="max-width: 250px; height: auto; border-radius: 50px;">
+            </p>
+        {% endif %}
+
+
     <dl>
         <dt>ID</dt>
         <dd>{{ contato.id }}</dd>

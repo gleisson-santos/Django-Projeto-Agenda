@@ -2,12 +2,13 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.http import Http404
 from .models import Contato
+
 from django.db.models import Q, Value
 from django.db.models.functions import  Concat
 
 # Create your views here.
 def index(request):
-    contatos = Contato.objects.order_by('nome') #Pode usar o Filtro ao invez de fazer o If no Html indez :)
+    contatos = Contato.objects.order_by('id') #Pode usar o Filtro ao invez de fazer o If no Html indez :)
 
     #Configurção de paginação.
     paginator = Paginator(contatos, 5)
@@ -35,11 +36,11 @@ def busca(request):
     if termo is None:
         raise  Http404()
 
-    campos = Concat('nome', Value(' '), 'sobrenome')#Valeu vai simular um campo vazio
+    campos = Concat('nome', Value(' '), 'sobrenome')#Valeu vai simular um campo/espaço vazio
 
     #para utilizar busca considerando duas colunas separadas
     contatos = Contato.objects.annotate(nome_completo = campos).filter(
-       Q(nome_completo__icontains=termo)  | Q(telefone__icontains=termo)
+       Q(nome_completo__icontains=termo) | Q(telefone__icontains=termo)
     )
 
     # #Pode usar o Filtro ao invez de fazer o If no Html index  / Criando o filtro de itens Q = OR
