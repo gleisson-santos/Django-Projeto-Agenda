@@ -19,7 +19,7 @@
 
         <tbody>
             {% for contato in contatos %}
-                {% if contato.mostrar %}
+               {% comment %} {% if contato.mostrar %} {% endcomment %}
                     <tr>
                         <td>{{ contato.id }}</td>
                         <td>{{ contato.nome }}</td>
@@ -29,7 +29,7 @@
                         <td>{{ contato.categoria }}</td>
                         <td> <a href="{% url 'ver_contato' contato.id %}">Editar</a> </td>
                     </tr>
-                {% endif %}
+                {% comment %} {% endif %} {% endcomment %}
             {% endfor %}
         </tbody>
 
@@ -40,9 +40,11 @@
             {% for pagina in contatos.paginator.page_range %}
                 {% if contatos.number == pagina %}
 
-                    <li class="page-item active"><a class="page-link" href="?p={{pagina}}">{{pagina}}</a></li>
+                    <li class="page-item active"><a class="page-link" href="?p={{pagina}}&termo={{ request.GET.termo }}">{{pagina}}</a></li>
+
                 {% else %}
-                    <li class="page-item"><a class="page-link" href="?p={{pagina}}">{{pagina}}</a></li>
+
+                    <li class="page-item"><a class="page-link" href="?p={{pagina}}&termo={{ request.GET.termo }}">{{pagina}}</a></li>
 
                 {% endif %}
             {% endfor %}
