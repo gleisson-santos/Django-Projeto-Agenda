@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block titulo %} {{ contato.nome }} {{ contato.sobrenome }} | {% endblock %}
+
 {% block conteudo %}   
 
         <h2 class="mt-3">{{ contato.nome }} {{ contato.sobrenome }}</h2>
