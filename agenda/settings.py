@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from django.contrib.messages import constants
 from pathlib import Path
 import os
 
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-2!-iqz55bd_dwu*h%rv4y$j(oytzk4!qcc2x#kvsx+%27*mg12
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '34.151.211.129']
 
 
 # Application definition
@@ -120,7 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 
-#***********************************************************
+# ***********************************************************
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
@@ -130,16 +131,15 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join('static')
 
 
-#***********************************************************
+# ***********************************************************
 
-#Inserir imagens
+# Inserir imagens
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
 
-#***********************************************************
+# ***********************************************************
 
-#mensagens
-from django.contrib.messages import constants
+# mensagens
 
 MESSAGE_TAGS = {
     constants.ERROR: 'alert-danger',
@@ -149,7 +149,7 @@ MESSAGE_TAGS = {
     constants.INFO: 'alert-info',
 }
 
-#***********************************************************
+# ***********************************************************
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
